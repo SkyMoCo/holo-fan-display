@@ -6,7 +6,7 @@ Layout measured from an app-made clip for this fan:
   300 lines x 5 bit planes x 18 bytes (48 LEDs x 3 colours) + 1,600 audio bytes,
   then 100,000 zero bytes. 20 frames per second.
 """
-import argparse, math, os, sys
+import argparse, colorsys, math, os, sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
@@ -24,12 +24,14 @@ LUT = np.frombuffer(bytes.fromhex(
     "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"), dtype=np.uint8)
 
 
+GREEN_AT, RED_AT = 80, 25
+
+
 def colour_for(pct):
-    if pct < 20:
-        return (255, 0, 0)
-    if pct <= 50:
-        return (255, 190, 0)
-    return (0, 255, 0)
+    """Green at 80 and above, red at 25 and below, fading through yellow in between."""
+    t = min(1.0, max(0.0, (pct - RED_AT) / (GREEN_AT - RED_AT)))
+    r, g, b = colorsys.hsv_to_rgb(t / 3, 1.0, 1.0)          # hue 0 = red, 1/3 = green
+    return (round(r * 255), round(g * 255), round(b * 255))
 
 
 def draw_image(pct=None, ring=True, big=8, text=None, colour=None):

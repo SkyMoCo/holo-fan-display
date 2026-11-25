@@ -5,6 +5,7 @@ Shows a battery percentage on a Missyou "5D HoLo" hologram fan (model F-MINI12),
 The fan cannot draw live data. It plays pre-made clips from its SD card, so this project has two parts:
 
 - `mini12.py` makes one clip per percentage value (`B000.bin` to `B100.bin`) and an optional alarm clip with sound.
+  Numbers are green at 80% and above, red at 25% and below, and fade through yellow in between.
 - `holo_bridge.py` listens to an MQTT topic and tells the fan to play the clip nearest to the latest reading.
 
 Tested on one F-MINI12 with firmware 1.1.0. Other models use different layouts.
