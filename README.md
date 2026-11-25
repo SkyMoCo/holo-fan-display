@@ -74,7 +74,7 @@ Worked out by decoding an app-made clip into a recognisable image.
 | Trailer | 100,000 zero bytes |
 
 - 48 LEDs on one blade, 300 lines per revolution, 20 frames per second.
-- Each 18-byte plane holds 48 LEDs x 3 colours, outermost LED first, colour order R, B, G, most significant plane first.
+- Each 18-byte plane holds 48 LEDs x 3 colours, outermost LED first, colour order B, G, R, most significant plane first.
 - Audio is assumed to be 32,000 samples per second (1,600 per frame at 20 fps).
 - The header is scrambled with a per-file one-byte XOR key; headers from different clips are the same underneath.
 

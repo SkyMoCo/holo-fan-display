@@ -75,7 +75,7 @@ def encode_frame(rgb, rotation_deg=180.0, hflip=False):
     f = rgb.astype(np.float64)
     interp = (f[c(y0, h-1), c(x0, w-1)] * (1-dx) * (1-dy) + f[c(y0, h-1), c(x0+1, w-1)] * dx * (1-dy)
               + f[c(y0+1, h-1), c(x0, w-1)] * (1-dx) * dy + f[c(y0+1, h-1), c(x0+1, w-1)] * dx * dy)
-    vals = LUT[interp.astype(np.uint8)][:, :, (0, 2, 1)].reshape(LINES, LIGHTS * 3)   # R, B, G
+    vals = LUT[interp.astype(np.uint8)][:, :, (2, 1, 0)].reshape(LINES, LIGHTS * 3)   # fan order is B, G, R
     planes = [np.packbits((vals >> (7 - k)) & 1, axis=1, bitorder="big") for k in range(DEPTH)]
     return np.stack(planes, axis=1).tobytes()        # line, plane, 18 bytes
 
