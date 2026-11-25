@@ -1,0 +1,13 @@
+[Unit]
+Description=MQTT bridge for the 5D HoLo fan
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/local/bin/holo_bridge.py /etc/holo-bridge.conf
+Restart=always
+RestartSec=10
+User=kevins
+
+[Install]
+WantedBy=multi-user.target

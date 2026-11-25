@@ -1,0 +1,27 @@
+[mqtt]
+host = 192.168.1.10
+port = 1883
+username =
+password =
+# Topic that carries the battery percentage
+battery_topic = solar/battery/soc
+# Leave empty if the message is a bare number such as 57.3.
+# For JSON such as {"battery": {"soc": 57.3}} use: battery.soc
+json_key =
+# The bridge publishes under this prefix
+base_topic = holo
+
+[fan]
+host = 192.168.4.1
+poll_seconds = 30
+
+[alarm]
+# Play the alarm clip when the battery drops below this percentage. 0 turns it off.
+below = 20
+clip = ALARM.bin
+# How long the alarm clip plays before the number comes back
+seconds = 6
+# Repeat the alarm this often while the battery stays low. 0 means once per drop.
+repeat_minutes = 0
+# Fan volume to set for the alarm, 1 to 3
+volume = 3

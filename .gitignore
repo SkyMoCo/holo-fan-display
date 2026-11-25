@@ -1,0 +1,8 @@
+*.bin
+*.wav
+*.mp3
+*.png
+battery/
+fan-backup/
+holo-bridge.conf
+__pycache__/
